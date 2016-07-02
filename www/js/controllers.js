@@ -19,10 +19,15 @@ angular.module('app.controllers', [])
 })
 
 //Controlador encargado de la pantalla de login      
-.controller('ingresoCtrl', function($scope, $state) {
+.controller('ingresoCtrl', function($scope, $state, jwtHelper) {
 
     $scope.mail = "";
     $scope.password = "";
+
+    
+
+
+
 
     /**
      * Metodo que se encarga de realizar el login
@@ -30,7 +35,13 @@ angular.module('app.controllers', [])
     $scope.login = function (form) {
         console.log('metodo login..:' + form.$valid);
 
-        if(form.$valid) {            
+        if(form.$valid) {
+
+            //ejemplo JWT
+            var expToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImxlbyI6InBvbCJ9.QVsihmPar3vF0EQxeRBZSuyB_zNc1jwU1WHyo0un4KQ';  
+            var tokenPayload = jwtHelper.decodeToken(expToken);
+            console.log(tokenPayload);
+
             $state.go('tabsController.registroEpisodio');
             
         }
