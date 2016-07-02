@@ -3,8 +3,18 @@ angular.module('app.controllers', [])
 .controller('registroEpisodioCtrl', function($scope) {
 
 })
-   
-.controller('perfilCtrl', function($scope) {
+
+ //controlador encargado del tab de perfil  
+.controller('perfilCtrl', function($scope, $state) {
+
+    /**
+     * Cierra la sesion activa del usuario
+     */
+    $scope.cerrarSesion = function() {
+        $state.go('ingreso');
+
+
+    }
 
 })
 
