@@ -24,6 +24,12 @@ More info on this can be found on the Ionic [Getting Started](http://ionicframew
 
 ## Información Diappnostic
 
+Actualizar node:
+
+```bash
+$ npm update
+```
+
 Actualizar bower:
 
 ```bash
