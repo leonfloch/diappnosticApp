@@ -19,26 +19,28 @@ angular.module('app.controllers', [])
 })
 
 //Controlador encargado de la pantalla de login      
-.controller('ingresoCtrl', function($scope, $state, jwtHelper) {
+.controller('ingresoCtrl', function($scope, $state, jwtHelper, LoginService) {
 
-    $scope.mail = "";
+    $scope.cedula = "";
     $scope.password = "";
-
-    
-
-
 
 
     /**
      * Metodo que se encarga de realizar el login
      */
     $scope.login = function (form) {
-        console.log('metodo login..:' + form.$valid);
+        console.log('metodo login..:' + form.$valid);        
 
         if(form.$valid) {
 
+            LoginService.realizarLogin($scope.cedula, $scope.password)
+            .then(function(response) {
+                $scope.post = response;
+                console.log('RESPONSE: ', $scope.post);
+            });
+
             //ejemplo JWT
-            var expToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImxlbyI6InBvbCJ9.QVsihmPar3vF0EQxeRBZSuyB_zNc1jwU1WHyo0un4KQ';  
+            var expToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiMTA1MjM5Mjc1NSIsIm5vbWJyZSI6Ikp1YW4gQ2FybG9zIEFsYmFycmFjw61uIiwicm9sIjoyLCJwZXJtaXNvcyI6W3siY29kaWdvIjoiMSJ9LHsiY29kaWdvIjoiMiJ9XX0.nNKDDu-lom04IazQsaTETXwMnsMimBfXIkbbJAAQUrQ';  
             var tokenPayload = jwtHelper.decodeToken(expToken);
             console.log(tokenPayload);
 

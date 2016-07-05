@@ -5,7 +5,21 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'angular-jwt'])
+angular.module('app', [
+  'ionic', 
+  'app.controllers', 
+  'app.routes', 
+  'app.services', 
+  'app.directives', 
+  'angular-jwt',
+  'ngStorage'])
+
+.config(function($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  //Remove the header used to identify ajax call  that would prevent CORS from working
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
